@@ -1,8 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
-const { format } = require("date-fns");
-const fs = require("fs/promises");
 const cors = require("cors");
+require("dotenv").config();
 
 const productsRouter = require("./src/routes/api/product");
 
@@ -13,14 +12,7 @@ app.use(cors());
 app.use(logger(formatsLogger));
 app.use(express.json());
 
-console.clear();
-
-app.use(async (req, res, next) => {
-  const date = format(new Date(), "dd-MM-yyyy HH:mm");
-  await fs.appendFile("./public/server.log", `\n${req.method} ${req.url} ${date}`);
-
-  next();
-});
+// console.clear();
 
 app.use("/api/products", productsRouter);
 
@@ -33,6 +25,10 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message });
 });
 
-app.listen(3000, () => {
-  console.log("Example app listening on port 3000!");
-});
+// app.listen(3000, () => {
+//   console.log("Example app listening on port 3000!");
+// });
+
+//cG2Rrbzs@59Ed_J
+
+module.exports = app;
