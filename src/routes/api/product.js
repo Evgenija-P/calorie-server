@@ -1,22 +1,25 @@
 const express = require("express");
 
-const { validateBody } = require("../../middlewares");
+const { validateBody, validateId } = require("../../middlewares");
 
 const ctrl = require("../../controllers/products/products");
-const { productSchema } = require("../../schemas");
+const { schemas } = require("../../models/product");
 
-const validate = validateBody(productSchema);
+const validate = validateBody(schemas.addProductSchema);
+const validateFavorite = validateBody(schemas.updateProductFavoriteSchema);
 
 const router = express.Router();
 
 router.get("/", ctrl.getAll);
 
-// router.get("/:productId", ctrl.getById);
+router.get("/:id", validateId, ctrl.getById);
 
-// router.post("/", validate, ctrl.add);
+router.post("/", validate, ctrl.add);
 
-// router.delete("/:productId", ctrl.remove);
+router.delete("/:id", validateId, ctrl.remove);
 
-// router.put("/:productId", validate, ctrl.update);
+router.put("/:id", validateId, validate, ctrl.updateById);
+
+router.patch("/:id/favorite", validateId, validateFavorite, ctrl.updateFavorite);
 
 module.exports = router;
