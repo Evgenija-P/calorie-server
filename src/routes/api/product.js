@@ -11,12 +11,12 @@ const router = express.Router();
 
 router.get("/", ctrl.getAll);
 
-router.get("/:productId", ctrl.getById);
+// router.get("/:productId", ctrl.getById);
 
-router.post("/", validate, ctrl.add);
+// router.post("/", validate, ctrl.add);
 
-router.delete("/:productId", ctrl.remove);
+// router.delete("/:productId", ctrl.remove);
 
-router.put("/:productId", validate, ctrl.update);
+// router.put("/:productId", validate, ctrl.update);
 
 module.exports = router;

@@ -12,8 +12,6 @@ app.use(cors());
 app.use(logger(formatsLogger));
 app.use(express.json());
 
-// console.clear();
-
 app.use("/api/products", productsRouter);
 
 app.use((req, res) => {
@@ -25,10 +23,5 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message });
 });
 
-// app.listen(3000, () => {
-//   console.log("Example app listening on port 3000!");
-// });
-
-//cG2Rrbzs@59Ed_J
-
+console.clear();
 module.exports = app;
