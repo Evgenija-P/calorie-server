@@ -10,8 +10,8 @@
 //   return products;
 // }
 
-// async function getProductById(productId) {
-//   const findId = String(productId);
+// async function getProductById(id) {
+//   const findId = String(id);
 //   const data = await fs.readFile(productsPath);
 //   const productFind = JSON.parse(data).find((product) => product.id === findId);
 //   if (!productFind) {
