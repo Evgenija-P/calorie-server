@@ -6,6 +6,15 @@ const getAll = async (req, res) => {
   res.json(result);
 };
 
+const getUserProduct = async (req, res) => {
+  const { _id: owner } = req.user;
+  console.log(owner);
+  const result = await Product.find({ owner }).populate("owner", "email");
+  console.log(result);
+
+  res.json(result);
+};
+
 const getById = async (req, res) => {
   const id = req.params.id;
   const result = await Product.findById(id);
@@ -16,7 +25,8 @@ const getById = async (req, res) => {
 };
 
 const add = async (req, res) => {
-  const result = await Product.create(req.body);
+  const { _id: owner } = req.user;
+  const result = await Product.create({ ...req.body, owner });
   res.status(201).json(result);
 };
 
@@ -51,4 +61,5 @@ module.exports = {
   remove: ctrlWrapper(remove),
   updateById: ctrlWrapper(updateById),
   updateFavorite: ctrlWrapper(updateFavorite),
+  getUserProduct: ctrlWrapper(getUserProduct),
 };

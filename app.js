@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const productsRouter = require("./src/routes/api/product");
+const authRouter = require("./src/routes/api/auth");
 
 const app = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -13,6 +14,7 @@ app.use(logger(formatsLogger));
 app.use(express.json());
 
 app.use("/api/products", productsRouter);
+app.use("/api/auth", authRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
