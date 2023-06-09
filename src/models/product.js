@@ -25,17 +25,17 @@ const categoryName = [
 ];
 const productSchema = new Schema(
   {
-    // owner: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "User",
-    //   require: true,
-    // },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      require: true,
+    },
     title: {
       type: String,
       required: true,
       maxlength: 30,
     },
-    squirrels: {
+    protein: {
       type: Number,
       required: true,
       maxlength: 6,
@@ -71,7 +71,7 @@ productSchema.post("save", handleMongooseError);
 
 const addProductSchema = Joi.object({
   title: Joi.string().required(),
-  squirrels: Joi.number().required(),
+  protein: Joi.number().required(),
   fats: Joi.number().required(),
   carbohydrates: Joi.number().required(),
   kcal: Joi.number().required(),
